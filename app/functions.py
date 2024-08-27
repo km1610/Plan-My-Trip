@@ -1,8 +1,5 @@
 import re
-from markdown2 import Markdown
-from tkhtmlview import HTMLLabel
 import google.generativeai as genai
-import pyttsx3
 import requests
 import os
 from dotenv import load_dotenv
