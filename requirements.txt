@@ -1,7 +1,6 @@
 Django==5.0.4
 django_multiselectfield==0.1.13
 markdown2==2.4.12
-protobuf==5.27.3
 python-dotenv==1.0.1
 Requests==2.32.3
 google-generativeai==0.3.2
