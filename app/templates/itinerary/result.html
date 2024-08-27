@@ -1,0 +1,39 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<div class="uk-container uk-container-xlarge">
+<div class="uk-card uk-card-default uk-card-body uk-width-1-1@m uk-align-center">
+
+    <h1 class="uk-heading-divider uk-heading-small">
+    Itinerary for {{ data.from_address }} to {{ data.to_address }}
+    </h1>
+    {% if itinerary %}
+    <md>{{ itinerary }}</md>
+    {% else %}
+    <p>Sorry. Unable to fetch this information at the moment</p>
+    {% endif %}
+
+    <h3>Weather Forecast</h3>
+    {% if weather_data %}
+    <p><b>Location:</b> {{ weather_data.resolvedAddress }}</p>
+    <div class="uk-overflow-auto">
+    <table class="uk-table uk-table-divider">
+    <tr><th>Date</th><th>Condition</th></tr>
+    {% for weather_data_item in weather_data.days %}
+    <tr><td>{{ weather_data_item.datetime }}</td><td>{{ weather_data_item.description }}</td></tr>
+    {% endfor %}
+    </table>
+    </div>
+    {% else %}
+    <p>Sorry. Unable to fetch this information at the moment</p>
+    {% endif %}
+    
+</div>
+</div>
+
+<script>
+    window.onload = (event) => {
+        renderMarkdown();
+};
+</script>
+{% endblock %}

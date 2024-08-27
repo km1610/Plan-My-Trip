@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Smart Travels</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- UIkit CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.11/dist/css/uikit.min.css" />
+
+<!-- UIkit JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.11/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.11/dist/js/uikit-icons.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/MarketingPipeline/Markdown-Tag/markdown-tag.js"></script>
+</head>
+<body>
+    
+  <div>
+
+    <nav class="uk-navbar-container uk-visible@m">
+        <div class="uk-container">
+            <div uk-navbar>
+
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li><a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" style="width: 150px;"></a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        <li><a href="{% url 'itinerary' %}">Generate Itinerary</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        {% endif %}
+                        {% if not request.user.is_authenticated %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                        {% endif %}
+                    </ul>
+
+                </div>
+
+                <div class="uk-navbar-right">
+
+                    <ul class="uk-navbar-nav">
+                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <nav class="uk-navbar-container uk-hidden@m">
+        <div class="uk-container">
+            <div uk-navbar>
+    
+                <div class="uk-navbar-left">
+                    <a class="uk-navbar-toggle uk-navbar-toggle-animate" uk-navbar-toggle-icon href="#"></a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li><a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" style="width: 150px;"></a></li>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                            <li><a href="{% url 'itinerary' %}">Generate Itinerary</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% endif %}
+                            {% if not request.user.is_authenticated %}
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'register' %}">Register</a></li>
+                            {% endif %}
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </nav>
+
+</div>
+
+
+{% block content %}
+
+{% endblock %}
+<br>
+<nav class="uk-navbar-container">
+    <div class="uk-container">
+        <div uk-navbar="align: center">
+
+            <div class="uk-navbar-center">
+
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <a href="#">Made by Kshiti Malla © Copyright 2024</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

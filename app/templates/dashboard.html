@@ -1,0 +1,63 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<div class="uk-container uk-container-xlarge">
+<div class="uk-card uk-card-default uk-card-body uk-width-1-1@m uk-align-center">
+
+    <h1 class="uk-heading-divider uk-heading-small">
+    Welcome {{ request.user.first_name }} {{ request.user.last_name }}!
+    </h1>
+
+    <div class="uk-section uk-section-muted">
+      <div class="uk-container">
+  
+          <h3>User Details</h3>
+  
+          <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
+              <div>
+                  <p><b>Username: </b> {{ request.user.username }}</p>
+              </div>
+              <div>
+                  <p><b>Name: </b> {{ request.user.first_name }} {{ request.user.last_name }}</p>
+              </div>
+              <div>
+                  <p><b>Email: </b> {{ request.user.email }}</p>
+              </div>
+          </div>
+  
+        </div>
+    </div>
+
+    <br>
+
+    <a class="uk-button uk-button-secondary" href="{% url 'itinerary' %}">Generate Itenary</a>
+
+    <h2 class="uk-heading-divider">Previously viewed itineraries <a class="uk-button uk-button-secondary" href="{% url 'clear_itinerary' %}">Clear All</a></h2>
+    <div class="uk-overflow-auto">
+    <table class="uk-table">
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>From Date</th>
+          <th>To Date</th>
+          <th>View Itinerary</th>
+          <th>Delete Itinerary</th>
+        </tr>
+        {% for input in itinerary_inputs %}
+            {% if input.username == request.user.username %}
+          <tr>
+            <td>{{ input.from_address }}</td>
+            <td>{{ input.to_address }}</td>
+            <td>{{ input.from_date }}</td>
+            <td>{{ input.to_date }}</td>
+            <td><a class="uk-button uk-button-default" href="{% url 'old_itinerary' input.id %}">View Itinerary</a></td>
+            <td><a href="{% url 'delete_itinerary' input.id %}" uk-icon="icon: trash"></a></td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+      </div>
+
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-align-center">
+<h1 class="uk-heading-divider">Create Itinerary</h1>
+<form method="POST" action="{% url 'itinerary' %}">
+    {% csrf_token %}
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input class="uk-input uk-form-width-large" type="text" aria-label="Not clickable icon" name="{{ form.username.name }}" value="{{ request.user.username }}" readonly="readonly"/>
+        </div>
+        {% if form.username.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.username.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: location"></span>
+            <input placeholder="From (City, State, Country)" class="uk-input uk-form-width-large" type="text" aria-label="Not clickable icon" name="{{ form.from_address.name }}" value="{{ form.from_address.value }}"/>
+        </div>
+        {% if form.from_address.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.from_address.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: location"></span>
+            <input placeholder="To (City, State, Country)" class="uk-input uk-form-width-large" type="text" aria-label="Not clickable icon" name="{{ form.to_address.name }}" value="{{ form.to_address.value }}"/>
+        </div>
+        {% if form.to_address.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.to_address.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <label class="uk-form-label">From</label><br>
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+            <input class="uk-input uk-form-width-large" type="date" aria-label="Not clickable icon" name="{{ form.from_date.name }}" value="{{ form.from_date.value }}"/>
+        </div>
+        {% if form.from_date.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.from_date.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label">To</label><br>
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: calendar"></span>
+            <input class="uk-input uk-form-width-large" type="date" aria-label="Not clickable icon" name="{{ form.to_date.name }}" value="{{ form.to_date.value }}"/>
+        </div>
+        {% if form.to_date.errors%}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.to_date.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: credit-card"></span>
+            <input placeholder="Budget (INR)" class="uk-input uk-form-width-large" type="number" aria-label="Not clickable icon" name="{{ form.budget.name }}" value="{{ form.budget.value }}"/>
+        </div>
+        {% if form.budget.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.budget.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input placeholder="Adults" class="uk-input uk-form-width-large" type="number" aria-label="Not clickable icon" name="{{ form.adults.name }}" value="{{ form.adults.value }}"/>
+        </div>
+        {% if form.adults.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.adults.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input placeholder="Children" class="uk-input uk-form-width-large" type="number" aria-label="Not clickable icon" name="{{ form.children.name }}" value="{{ form.children.value }}"/>
+        </div>
+        {% if form.children.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.children.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <label class="uk-form-label">Travel Companion</label><br>
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: users"></span>
+            <select class="uk-input uk-form-width-large" aria-label="Not clickable icon" name="{{ form.travel_companion.name }}" value="{{ form.travel_companion.value }}">
+                <option value="family">Family</option>
+                <option value="friends">Friends</option>
+                <option value="partner">Partner</option>
+                <option value="solo">Solo</option>
+                <option value="doesnt_matter">Doesn't Matter</option>
+            </select>
+        </div>
+        {% if form.travel_companian.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.travel_companian.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <label class="uk-form-label">Travel Experience Preference</label><br>
+        <div class="uk-inline">
+            {{ form.preferences }}
+        </div>
+        {% if form.preferences.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.preferences.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <textarea placeholder="Special Requests ( Write NA if none )" class="uk-input uk-form-width-large" aria-label="Not clickable icon" name="{{ form.special_requests.name }}" value="{{ form.special_requests.value }}"></textarea>
+        </div>
+        {% if form.special_requests.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.special_requests.errors }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="uk-button uk-button-secondary">Generate</button>
+</form>
+</div>
+
+{% endblock %}

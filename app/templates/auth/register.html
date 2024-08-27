@@ -1,0 +1,74 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-align-center">
+<h1 class="uk-heading-divider">Register</h1>
+<form method="POST" action="{% url 'register' %}">
+    {% csrf_token %}
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+            <input placeholder="Email" class="uk-input uk-form-width-large" type="text" aria-label="Not clickable icon" name="{{ form.email.name }}" value="{{ form.email.value}}" />
+        </div>
+        {% if form.email.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.email.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input placeholder="Username" class="uk-input uk-form-width-large" type="text" aria-label="Not clickable icon" name="{{ form.username.name }}" value="{{ form.username.value}}" />
+        </div>
+        {% if form.username.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.username.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input placeholder="First Name" class="uk-input uk-form-width-large" type="text" aria-label="Not clickable icon" name="{{ form.first_name.name }}" value="{{ form.first_name.value}}" />
+        </div>
+        {% if form.first_name.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.first_name.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input placeholder="Last Name" class="uk-input uk-form-width-large" type="text" aria-label="Not clickable icon" name="{{ form.last_name.name }}" value="{{ form.last_name.value}}" />
+        </div>
+        {% if form.last_name.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.last_name.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+            <input placeholder="Password" class="uk-input uk-form-width-large" type="password" aria-label="Not clickable icon" name="{{ form.password1.name }}" value="{{ form.password1.value}}" />
+        </div>
+        {% if form.password1.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.password1.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+            <input placeholder="Confirm Password"  class="uk-input uk-form-width-large" type="password" aria-label="Not clickable icon" name="{{ form.password2.name }}" value="{{ form.password2.value}}" />
+        </div>
+        {% if form.password2.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.password2.errors }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="uk-button uk-button-secondary">Register</button>
+    <a class="uk-button uk-button-default" href="{% url 'login' %}">Login to an existing account</a>
+</form>
+</div>
+
+{% endblock %}

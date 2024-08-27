@@ -1,0 +1,22 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<div class="uk-container uk-container-xlarge">
+<div class="uk-card uk-card-default uk-card-body uk-width-1-1@m uk-align-center">
+
+    <h1 class="uk-heading-divider uk-heading-small">
+    Sorry! An error has occured. Please try again later
+    </h1>
+    <span class="uk-label">Note</span>
+    <p>
+        <ul>
+            <li>This error can be caused due to error occurred by fetching data from API call</li>
+            <li>Itinerary Generation can only be used for limited times per day (Due to API usage limit)</li>
+            <li>Itinerary Generation can only be used for a trip <b>no longer</b> that <b>14 days</b></li>
+        </ul>
+    </p>
+
+
+</div>
+</div>
+{% endblock %}

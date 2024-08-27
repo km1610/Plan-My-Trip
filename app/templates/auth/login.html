@@ -1,0 +1,41 @@
+{% extends 'layouts/app.html' %}
+
+{% block content %}
+<div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-align-center">
+<h1 class="uk-heading-divider">Login</h1>
+
+{% if form.non_field_errors %}
+        <div uk-alert class="uk-alert-danger" >
+            {{ form.non_field_errors.as_ul }}
+        </div>
+        {% endif %}
+
+<form method="POST" action="{% url 'login' %}">
+
+    {% csrf_token %}
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input placeholder="Username" class="uk-input uk-form-width-large" type="text" aria-label="Not clickable icon" name="{{ form.username.name }}" value="{{ form.username.value}}" />
+        </div>
+        {% if form.username.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.username.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+            <input placeholder="Password" class="uk-input uk-form-width-large" type="password" aria-label="Not clickable icon" name="{{ form.password.name }}" value="{{ form.password1.value}}" />
+        </div>
+        {% if form.password.errors %}
+                <div uk-alert class="uk-alert-danger" style="text-decoration: none;">{{ form.password.errors }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="uk-button uk-button-secondary">Login</button>
+    <a class="uk-button uk-button-default" href="{% url 'register' %}">Create a new account</a>
+</form>
+</div>
+
+{% endblock %}
