@@ -53,7 +53,7 @@ pip install python-dotenv
 
 pip install requests
 
-pip install google-generativeai
+pip install google-genai
 ```
 
 ### Running the application
