@@ -1,5 +1,5 @@
 import re
-import google.generativeai as genai
+from google import genai
 import requests
 import os
 from dotenv import load_dotenv
@@ -33,4 +33,5 @@ def FetchWeatherData(to_address, data):
   print(response)
   print(os.environ.get("WEATHER_API_2"))
   return response.json
+
 
